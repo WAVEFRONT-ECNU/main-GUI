@@ -39,3 +39,6 @@ CMakeLists.txt.user*
 
 # IDEA
 .idea/
+
+# Visual Studio
+.vs/
