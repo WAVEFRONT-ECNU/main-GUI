@@ -42,3 +42,10 @@ CMakeLists.txt.user*
 
 # Visual Studio
 .vs/
+/Canetis/main-GUI.vcxproj.user
+/Canetis/main-GUI.vcxproj.filters
+/Canetis/main-GUI.vcxproj
+/Canetis/.qmake.stash
+/Canetis/release
+/Canetis/debug
+/Canetis/main-GUI.sln
