@@ -26,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    modulepathsettingwindow.cpp
+    modulepathsettingwindow.cpp \
+    rwconfig.cpp
 
 HEADERS += \
         mainwindow.h \
-    modulepathsettingwindow.h
+    modulepathsettingwindow.h \
+    rwconfig.h
 
 FORMS += \
         mainwindow.ui \
