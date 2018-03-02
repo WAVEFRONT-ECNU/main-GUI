@@ -12,3 +12,10 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+// OPEN MODULE PATH SETTING WINDOW
+void MainWindow::on_actionSettingModulePath_triggered()
+{
+    view = new ModulePathSettingWindow(this);
+    view->show();
+}

@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = main-GUI
+TARGET = Canetis
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -25,10 +25,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    modulepathsettingwindow.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    modulepathsettingwindow.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    modulepathsettingwindow.ui
