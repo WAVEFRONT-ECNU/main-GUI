@@ -1,11 +1,12 @@
 #include "rwconfig.h"
 
-libconfig::Config mainconfig;
-
 rwConfig::rwConfig()
 {
-
+    std::string configpath = "./config.cfg";
+    loadConfig(configpath);
 }
+
+libconfig::Config mainconfig;
 
 void rwConfig::loadConfig(std::string configpath)
 {
@@ -15,17 +16,17 @@ void rwConfig::loadConfig(std::string configpath)
     }
     catch(libconfig::FileIOException &e)
     {
-        std::cout<<"read file [ "<<configpath<< " ] FileIOException"<<std::endl;
+        std::cerr<<"read file [ "<<configpath<< " ] FileIOException"<<std::endl;
         return;
     }
     catch(libconfig::ParseException &e)
     {
-        std::cout<<"read file [ "<<configpath<< " ],ParaseException: "<<e.getError()<<",line:"<<e.getLine()<<std::endl;
+        std::cerr<<"read file [ "<<configpath<< " ],ParaseException: "<<e.getError()<<",line:"<<e.getLine()<<std::endl;
         return;
     }
     catch(...)
     {
-        std::cout<<"read file ["<<configpath<< " ] unknown exception"<<std::endl;
+        std::cerr<<"read file ["<<configpath<< " ] unknown exception"<<std::endl;
         return;
     }
 }
@@ -47,5 +48,28 @@ std::string rwConfig::getConfig(std::string id)
 void rwConfig::setConfig(std::string id, std::string value)
 {
     libconfig::Setting &root = mainconfig.getRoot();
-    root.add(id, libconfig::Setting::TypeString)=value;
+    try
+    {
+        if(root.exists(id))
+        {
+            libconfig::Setting &option = root.lookup(id);
+            option = value;
+        }
+        else {
+            root.add(id, libconfig::Setting::TypeString)=value;
+        }
+
+        std::string configpath = "./config.cfg";
+        mainconfig.writeFile(configpath.c_str());
+        std::cout << "New configuration successfully written."<< std::endl;
+    }
+    catch( libconfig::FileIOException &fioex)
+    {
+        std::cerr << "I/O error while writing file."<< std::endl;
+        return;
+    }
+    catch(std::exception &e)
+    {
+        std::cerr << "Error while writing file."<<e.what()<< std::endl;
+    }
 }

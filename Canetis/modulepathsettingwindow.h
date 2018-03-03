@@ -29,9 +29,6 @@ private slots:
 
 private:
     Ui::ModulePathSettingWindow *ui;
-    QLineEdit *txtSlicer;
-    QLineEdit *txtClustering;
-    QLineEdit *txtRecognition;
 };
 
 #endif // MODULEPATHSETTINGWINDOW_H

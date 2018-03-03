@@ -7,14 +7,14 @@ ModulePathSettingWindow::ModulePathSettingWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     // TODO add config load
-    std::string configSlicer, configClustering, configRecognition;
+    std::string configSlicer, configClustering, configRecognition = "";
     rwConfig config;
     configSlicer = config.getConfig("SlicerPath");
     configClustering = config.getConfig("ClusteringPath");
     configRecognition = config.getConfig("RecognitionPath");
-    txtSlicer->setText(QString::fromStdString(configSlicer));
-    txtClustering->setText(QString::fromStdString(configClustering));
-    txtRecognition->setText(QString::fromStdString(configRecognition));
+    ui->txtSlicer->setText(QString::fromStdString(configSlicer));
+    ui->txtClustering->setText(QString::fromStdString(configClustering));
+    ui->txtRecognition->setText(QString::fromStdString(configRecognition));
 }
 
 ModulePathSettingWindow::~ModulePathSettingWindow()
@@ -25,6 +25,10 @@ ModulePathSettingWindow::~ModulePathSettingWindow()
 void ModulePathSettingWindow::on_buttonBox_accepted()
 {
     // TODO add config saving
+    rwConfig config;
+    config.setConfig("SlicerPath",ui->txtSlicer->text().toStdString());
+    config.setConfig("ClusteringPath",ui->txtClustering->text().toStdString());
+    config.setConfig("RecognitionPath",ui->txtRecognition->text().toStdString());
 }
 
 void ModulePathSettingWindow::on_buttonBox_rejected()

@@ -10,7 +10,7 @@ class rwConfig
 public:
     rwConfig();
     void loadConfig(std::string configpath);
-    static libconfig::Config mainconfig;
+    libconfig::Config mainconfig;
     std::string getConfig(std::string id);
     void setConfig(std::string id, std::string value);
 };

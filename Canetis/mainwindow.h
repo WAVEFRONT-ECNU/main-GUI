@@ -16,7 +16,6 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    rwConfig mainconfig;
 
 private slots:
     void on_actionSettingModulePath_triggered();
