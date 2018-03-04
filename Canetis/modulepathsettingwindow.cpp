@@ -33,5 +33,39 @@ void ModulePathSettingWindow::on_buttonBox_accepted()
 
 void ModulePathSettingWindow::on_buttonBox_rejected()
 {
-
+    // NO CANCEL ACTION
 }
+
+void ModulePathSettingWindow::on_btnSetSlicer_clicked()
+{
+    QString folder = chooseFolder();
+    if(folder != "")
+    {
+        ui->txtSlicer->setText(folder);
+    }
+}
+
+void ModulePathSettingWindow::on_btnSetClustering_clicked()
+{
+    QString folder = chooseFolder();
+    if(folder != "")
+    {
+    ui->txtClustering->setText(folder);
+    }
+}
+
+void ModulePathSettingWindow::on_btnSetRecognition_clicked()
+{
+    QString folder = chooseFolder();
+    if(folder != "")
+    {
+    ui->txtRecognition->setText(folder);
+    }
+}
+
+QString ModulePathSettingWindow::chooseFolder()
+{
+    QString file_name = QFileDialog::getExistingDirectory(NULL,"Choose Folder",".");
+    return file_name;
+}
+

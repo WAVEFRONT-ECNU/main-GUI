@@ -38,3 +38,4 @@ FORMS += \
         mainwindow.ui \
     modulepathsettingwindow.ui
 
+QMAKE_CXXFLAGS +=  -Wno-unused-parameter

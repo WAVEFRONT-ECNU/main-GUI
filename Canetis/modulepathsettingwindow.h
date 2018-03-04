@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QWidget>
+#include <QFileDialog>
 #include <string>
 #include "rwconfig.h"
 
@@ -27,8 +28,15 @@ private slots:
 
     void on_buttonBox_rejected();
 
+    void on_btnSetSlicer_clicked();
+
+    void on_btnSetClustering_clicked();
+
+    void on_btnSetRecognition_clicked();
+
 private:
     Ui::ModulePathSettingWindow *ui;
+    QString chooseFolder();
 };
 
 #endif // MODULEPATHSETTINGWINDOW_H
