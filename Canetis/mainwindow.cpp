@@ -6,6 +6,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    Py_Initialize();
+    PyRun_SimpleString("import sys");
+    std::string chdir_cmd = std::string("sys.path.append(\'/media/qcmiao/Document/computer-competition/canetis-env/lib/python3.5/site-packages\')");
+    PyRun_SimpleString(chdir_cmd.c_str());
 }
 
 bool workMode; // 0 is file; 1 is stream.
@@ -13,6 +17,7 @@ std::string audioFilePath;
 
 MainWindow::~MainWindow()
 {
+    Py_Finalize();
     delete ui;
 }
 
