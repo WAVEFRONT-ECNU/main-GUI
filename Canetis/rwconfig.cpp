@@ -2,11 +2,12 @@
 
 rwConfig::rwConfig()
 {
-    std::string configpath = "./config.cfg";
+    configpath = "./config.cfg";
     loadConfig(configpath);
 }
 
 libconfig::Config mainconfig;
+std::string configpath;
 
 void rwConfig::loadConfig(std::string configpath)
 {
@@ -59,7 +60,6 @@ void rwConfig::setConfig(std::string id, std::string value)
             root.add(id, libconfig::Setting::TypeString)=value;
         }
 
-        std::string configpath = "./config.cfg";
         mainconfig.writeFile(configpath.c_str());
         std::cout << "New configuration successfully written."<< std::endl;
     }

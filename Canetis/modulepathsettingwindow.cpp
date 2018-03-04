@@ -22,6 +22,9 @@ ModulePathSettingWindow::~ModulePathSettingWindow()
     delete ui;
 }
 
+///
+/// \brief Save the path config.
+///
 void ModulePathSettingWindow::on_buttonBox_accepted()
 {
     // TODO add config saving
@@ -36,6 +39,9 @@ void ModulePathSettingWindow::on_buttonBox_rejected()
     // NO CANCEL ACTION
 }
 
+///
+/// \brief Button SetSlicer Clicked.
+///
 void ModulePathSettingWindow::on_btnSetSlicer_clicked()
 {
     QString folder = chooseFolder();
@@ -45,6 +51,9 @@ void ModulePathSettingWindow::on_btnSetSlicer_clicked()
     }
 }
 
+///
+/// \brief Button SetClustering Clicked.
+///
 void ModulePathSettingWindow::on_btnSetClustering_clicked()
 {
     QString folder = chooseFolder();
@@ -54,6 +63,9 @@ void ModulePathSettingWindow::on_btnSetClustering_clicked()
     }
 }
 
+///
+/// \brief Button SetRecognition Clicked.
+///
 void ModulePathSettingWindow::on_btnSetRecognition_clicked()
 {
     QString folder = chooseFolder();
@@ -63,6 +75,10 @@ void ModulePathSettingWindow::on_btnSetRecognition_clicked()
     }
 }
 
+///
+/// \brief Choose the folder and get its path
+/// \return path of choosen folder
+///
 QString ModulePathSettingWindow::chooseFolder()
 {
     QString file_name = QFileDialog::getExistingDirectory(NULL,"Choose Folder",".");
