@@ -23,9 +23,14 @@ private slots:
 
     void on_actionFile_triggered();
 
+    void on_actionStream_triggered();
+
 private:
     Ui::MainWindow *ui;
     ModulePathSettingWindow *view;
+    void printLogsOnScreen(std::string);
+    bool workMode;
+    std::string audioFilePath;
 };
 
 #endif // MAINWINDOW_H

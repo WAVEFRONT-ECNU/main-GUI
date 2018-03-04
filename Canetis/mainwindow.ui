@@ -55,7 +55,7 @@
      <string>Start</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="labelLog">
     <property name="geometry">
      <rect>
       <x>40</x>
