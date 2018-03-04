@@ -13,9 +13,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-// OPEN MODULE PATH SETTING WINDOW
+///
+/// \brief Open The Setting Window.
+///
 void MainWindow::on_actionSettingModulePath_triggered()
 {
     view = new ModulePathSettingWindow(this);
     view->show();
+}
+
+///
+/// \brief Open an Audio File.
+///
+void MainWindow::on_actionFile_triggered()
+{
+
 }

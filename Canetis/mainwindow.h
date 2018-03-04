@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "modulepathsettingwindow.h"
 #include "rwconfig.h"
+#include "Python.h"
 
 namespace Ui {
 class MainWindow;
@@ -19,6 +20,8 @@ public:
 
 private slots:
     void on_actionSettingModulePath_triggered();
+
+    void on_actionFile_triggered();
 
 private:
     Ui::MainWindow *ui;
