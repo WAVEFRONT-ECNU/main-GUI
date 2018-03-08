@@ -26,6 +26,12 @@ LIBS += -L/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu -L/usr/lib -lpython3.5
 #INCLUDEPATH += /usr/include/python3.5m /usr/include/python3.5m -Wno-unused-result -Wsign-compare -g -fstack-protector-strong -Wformat -Werror=format-security  -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes
 INCLUDEPATH += /usr/include/python3.5m /usr/include/python3.5m -Wno-unused-result -Wsign-compare -g -fstack-protector-strong -Wformat -Werror=format-security  -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes
 
+#JAVA_HOME = ${JAVA_HOME}
+JAVA_HOME = /usr/lib/jvm/java-8-oracle
+INCLUDEPATH += $$JAVA_HOME/include
+INCLUDEPATH += $$JAVA_HOME/include/linux
+LIBS += $$JAVA_HOME/jre/lib/amd64/server/libjvm.so
+
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
