@@ -20,7 +20,7 @@
    <string>Canetis</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTableWidget" name="tableReco">
+   <widget class="QTableWidget" name="tableResult">
     <property name="geometry">
      <rect>
       <x>20</x>

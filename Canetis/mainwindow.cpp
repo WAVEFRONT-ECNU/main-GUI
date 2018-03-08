@@ -10,9 +10,12 @@ MainWindow::MainWindow(QWidget *parent) :
     PyRun_SimpleString("import sys");
     std::string chdir_cmd = std::string("sys.path.append(\'/media/qcmiao/Document/computer-competition/canetis-env/lib/python3.5/site-packages\')");
     PyRun_SimpleString(chdir_cmd.c_str());
+    workMode = true; startStatus = false;
+    audioFilePath = "";
 }
 
 bool workMode; // 0 is file; 1 is stream.
+bool startStatus; // 0 is not_start; 1 is running
 std::string audioFilePath;
 
 MainWindow::~MainWindow()
@@ -59,5 +62,55 @@ void MainWindow::on_actionFile_triggered()
 void MainWindow::on_actionStream_triggered()
 {
     workMode = true;
+    startStatus = false;
     printLogsOnScreen("Set mode stream");
+}
+
+///
+/// \brief Start record and reco.
+///
+void MainWindow::on_btnStartStop_clicked()
+{
+    // LOAD CONFIG
+    std::string configSlicer, configClustering, configRecognition = "";
+    rwConfig config;
+    configSlicer = config.getConfig("SlicerPath");
+    configClustering = config.getConfig("ClusteringPath");
+    configRecognition = config.getConfig("RecognitionPath");
+    if(configClustering == "" or configRecognition == "" or configSlicer == "")
+    {
+        printLogsOnScreen("Please set the path of modules first.");
+        on_actionSettingModulePath_triggered();
+        return;
+    }
+    std::string configs[3] = {configClustering, configRecognition, configSlicer};
+    foreach (std::string path, configs) {
+        std::string chdir_cmd = std::string("sys.path.append(\'" + path + "\')");
+        PyRun_SimpleString(chdir_cmd.c_str());
+    }
+
+    // TODO OPEN FILE OR STREAM
+    if(workMode) // when stream
+    {
+        if(!startStatus)
+        {
+            // TODO LINK RECORD
+            startStatus = true;
+            ui->btnStartStop->setText("Stop");
+        }
+        else {
+            // TODO GET AUDIOLIST
+            startStatus = false;
+            ui->btnStartStop->setText("Start");
+        }
+    }
+    else { // when file
+        // TODO SEND AND GET AUDIOLIST
+    }
+
+    // TODO SEND TO CLUSTERING
+
+    // TODO SEND TO RECO
+
+    // PRINT IN TABLE
 }

@@ -5,6 +5,7 @@
 #include "modulepathsettingwindow.h"
 #include "rwconfig.h"
 #include "Python.h"
+#include "jni.h"
 
 namespace Ui {
 class MainWindow;
@@ -25,11 +26,14 @@ private slots:
 
     void on_actionStream_triggered();
 
+    void on_btnStartStop_clicked();
+
 private:
     Ui::MainWindow *ui;
     ModulePathSettingWindow *view;
     void printLogsOnScreen(std::string);
     bool workMode;
+    bool startStatus;
     std::string audioFilePath;
 };
 
