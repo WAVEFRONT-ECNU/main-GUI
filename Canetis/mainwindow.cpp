@@ -71,22 +71,35 @@ void MainWindow::on_actionStream_triggered()
 ///
 void MainWindow::on_btnStartStop_clicked()
 {
-    // LOAD CONFIG
-    std::string configSlicer, configClustering, configRecognition = "";
+    // LOAD CONFIG AND ADD MODULE NAME
+    std::string configSlicer[2], configClustering[2], configRecognition[2];
     rwConfig config;
-    configSlicer = config.getConfig("SlicerPath");
-    configClustering = config.getConfig("ClusteringPath");
-    configRecognition = config.getConfig("RecognitionPath");
-    if(configClustering == "" or configRecognition == "" or configSlicer == "")
+    configSlicer[0] = config.getConfig("SlicerPath");
+    configSlicer[1] = "WaveSlicer";
+    configClustering[0] = config.getConfig("ClusteringPath");
+    configClustering[1] = "Clustering";
+    configRecognition[0] = config.getConfig("RecognitionPath");
+    if(configClustering[0] == "" or configRecognition[0] == "" or configSlicer[0] == "")
     {
         printLogsOnScreen("Please set the path of modules first.");
         on_actionSettingModulePath_triggered();
         return;
     }
-    std::string configs[3] = {configClustering, configRecognition, configSlicer};
-    foreach (std::string path, configs) {
-        std::string chdir_cmd = std::string("sys.path.append(\'" + path + "\')");
+    // ADD PYTHON MODULE PATH TO SYS.PATH
+    // IMPORT MODULES AND WHEN ERROR THROW IT
+    std::string pythonConfigs[2][2] = {configClustering, configSlicer};
+    for (int i = 0; i < 2; i++) {
+        std::string chdir_cmd = std::string("sys.path.append(\'" + pythonConfigs[i][0] + "\')");
         PyRun_SimpleString(chdir_cmd.c_str());
+        PyObject* pModule = PyImport_ImportModule(pythonConfigs[i][1].c_str());
+        if (pModule == nullptr) // IF LOAD MODULE ERR
+            {
+                std::cerr << "[ERROR] Python import module "<<pythonConfigs[i][1]<<" failed." << std::endl;
+                PyErr_Print();
+                return;
+            }
+            std::cout << "[INFO] Python get module "<<pythonConfigs[i][1]<<" succeed." << std::endl;
+
     }
 
     // TODO OPEN FILE OR STREAM
