@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
     PyRun_SimpleString("import sys");
     std::string chdir_cmd = std::string("sys.path.append(\'/media/qcmiao/Document/computer-competition/canetis-env/lib/python3.5/site-packages\')");
     PyRun_SimpleString(chdir_cmd.c_str());
+    wchar_t* argv[0];
+    PySys_SetArgv(0, argv);
     workMode = true; startStatus = false;
     audioFilePath = "";
 }
@@ -92,7 +94,7 @@ void MainWindow::on_btnStartStop_clicked()
         std::string chdir_cmd = std::string("sys.path.append(\'" + pythonConfigs[i][0] + "\')");
         PyRun_SimpleString(chdir_cmd.c_str());
         PyObject* pModule = PyImport_ImportModule(pythonConfigs[i][1].c_str());
-        if (pModule == nullptr) // IF LOAD MODULE ERR
+        if (pModule == NULL or PyErr_Occurred()) // IF LOAD MODULE ERR
             {
                 std::cerr << "[ERROR] Python import module "<<pythonConfigs[i][1]<<" failed." << std::endl;
                 PyErr_Print();
