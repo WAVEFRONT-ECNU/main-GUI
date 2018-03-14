@@ -89,7 +89,7 @@ void MainWindow::on_btnStartStop_clicked()
     }
     // ADD PYTHON MODULE PATH TO SYS.PATH
     // IMPORT MODULES AND WHEN ERROR THROW IT
-    std::string pythonConfigs[2][2] = {configClustering, configSlicer};
+    std::string pythonConfigs[2][2] = {{configClustering[0],configClustering[1]}, {configSlicer[0],configSlicer[1]}};
     for (int i = 0; i < 2; i++) {
         std::string chdir_cmd = std::string("sys.path.append(\'" + pythonConfigs[i][0] + "\')");
         PyRun_SimpleString(chdir_cmd.c_str());
